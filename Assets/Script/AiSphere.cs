@@ -42,8 +42,11 @@ public class AiSphere : Sphere
 
     //触发？在边缘反方向移动
     Vector3 ChangeForwardBack() {
-        Debug.Log("反方向");
-        return transform.localEulerAngles += new Vector3(0, 180, 0);
+        Vector3 eulerAngles = transform.localEulerAngles;
+        Debug.Log(name + "  方向:" + eulerAngles);
+        eulerAngles += new Vector3(0, 180, 0);
+        Debug.Log(name + "  反方向" + eulerAngles);
+        return eulerAngles;
     }
 
     //Plus：主动攻击别的小球
@@ -56,18 +59,18 @@ public class AiSphere : Sphere
     // 开始接触
     void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("开始接触： " + collider.name);
-        ChangeForward(ChangeForwardBack());
+        //Debug.Log(name+"  开始接触： " + collider.name);
+        ChangeForwardBack();
     }
     // 接触结束
     void OnTriggerExit(Collider collider)
     {
-        Debug.Log("接触结束： " + collider.name);     
+        //Debug.Log(name + "  接触结束： " + collider.name);     
     }
     // 接触持续中
     void OnTriggerStay(Collider collider)
     {
-        Debug.Log("接触持续中： " + collider.name);
+        Debug.Log(name + "  接触持续中： " + collider.name);
     }
 
 
